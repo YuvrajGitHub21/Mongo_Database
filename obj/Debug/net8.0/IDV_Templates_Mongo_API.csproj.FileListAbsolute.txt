@@ -6,6 +6,7 @@ C:\Users\yuvraj.padhy\OneDrive - Arcon Techsolutions Pvt. Ltd\Desktop\CODES\Mong
 C:\Users\yuvraj.padhy\OneDrive - Arcon Techsolutions Pvt. Ltd\Desktop\CODES\Mongo_Backend\New back\backend\IDV_Templates_Mongo_API\obj\Debug\net8.0\IDV_Templates_Mongo_API.csproj.CoreCompileInputs.cache
 C:\Users\yuvraj.padhy\OneDrive - Arcon Techsolutions Pvt. Ltd\Desktop\CODES\Mongo_Backend\New back\backend\IDV_Templates_Mongo_API\obj\Debug\net8.0\IDV_Templates_Mongo_API.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\yuvraj.padhy\OneDrive - Arcon Techsolutions Pvt. Ltd\Desktop\CODES\Mongo_Backend\New back\backend\IDV_Templates_Mongo_API\obj\Debug\net8.0\IDV_Templates_Mongo_API.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\yuvraj.padhy\OneDrive - Arcon Techsolutions Pvt. Ltd\Desktop\CODES\Mongo_Backend\New back\backend\IDV_Templates_Mongo_API\obj\Debug\net8.0\IDV_Templates_Mongo_API.sourcelink.json
 C:\Users\yuvraj.padhy\OneDrive - Arcon Techsolutions Pvt. Ltd\Desktop\CODES\Mongo_Backend\New back\backend\IDV_Templates_Mongo_API\bin\Debug\net8.0\appsettings.json
 C:\Users\yuvraj.padhy\OneDrive - Arcon Techsolutions Pvt. Ltd\Desktop\CODES\Mongo_Backend\New back\backend\IDV_Templates_Mongo_API\bin\Debug\net8.0\IDV_Templates_Mongo_API.staticwebassets.endpoints.json
 C:\Users\yuvraj.padhy\OneDrive - Arcon Techsolutions Pvt. Ltd\Desktop\CODES\Mongo_Backend\New back\backend\IDV_Templates_Mongo_API\bin\Debug\net8.0\IDV_Templates_Mongo_API.exe

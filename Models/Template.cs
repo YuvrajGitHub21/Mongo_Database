@@ -112,18 +112,18 @@ public class SectionStatus
     [BsonElement("doc_verification")] public bool doc_verification { get; set; }
     [BsonElement("Biometric_verification")] public bool Biometric_verification { get; set; }
 
-    // ===== Added fields for dashboard =====
-    [BsonElement("invitees")]
-    public List<Invitee> invitees { get; set; } = new();
+    // // ===== Added fields for dashboard =====
+    // [BsonElement("invitees")]
+    // public List<Invitee> invitees { get; set; } = new();
 
-    [BsonElement("created_template_date")]
-    public DateTime created_template_date { get; set; }
+    // [BsonElement("created_template_date")]
+    // public DateTime created_template_date { get; set; }
 
-    [BsonElement("created_by")]
-    public string created_by { get; set; } = string.Empty;
+    // [BsonElement("created_by")]
+    // public string created_by { get; set; } = string.Empty;
 
-    [BsonElement("last_updated")]
-    public DateTime last_updated { get; set; }
+    // [BsonElement("last_updated")]
+    // public DateTime last_updated { get; set; }
 
 }
 

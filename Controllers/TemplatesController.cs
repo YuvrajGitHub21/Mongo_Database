@@ -7,6 +7,7 @@ using IDV_Templates_Mongo_API.Models;
 using IDV_Templates_Mongo_API.Services;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
+using Microsoft.AspNetCore.Authorization;
 
 namespace IDV_Templates_Mongo_API.Controllers;
 
@@ -43,15 +44,16 @@ public class TemplatesController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize]
     public async Task<ActionResult<Template>> Create([FromBody] Template input, CancellationToken ct)
     {
-        
-        // Set created_by and timestamps
+        // Stamp meta
         try { input.created_by = await ResolveCurrentUserNameAsync(ct); } catch {}
         if (input.invitees == null) input.invitees = new List<Invitee>();
         if (input.created_template_date == default) input.created_template_date = DateTime.UtcNow;
         input.last_updated = DateTime.UtcNow;
-    var created = await _svc.CreateAsync(input, ct);
+
+        var created = await _svc.CreateAsync(input, ct);
         return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
     }
 
@@ -63,18 +65,21 @@ public class TemplatesController : ControllerBase
     }
 
     [HttpPost("create-min")]
+    [Authorize]
     public async Task<ActionResult<Template>> CreateMin([FromBody] CreateTemplateByNameDto dto, CancellationToken ct)
     {
         if (string.IsNullOrWhiteSpace(dto.nameOfTemplate))
             return BadRequest("nameOfTemplate is required.");
 
         var t = DefaultTemplateFactory.CreateBlank(dto.nameOfTemplate);
-        
-        try { t.created_by = await ResolveCurrentUserNameAsync(ct); } catch {}
+
+        // Stamp meta
+        try { t.created_by = await ResolveCurrentUserNameAsync(ct); } catch { t.created_by = "Unknown"; }
         t.created_template_date = DateTime.UtcNow;
         t.last_updated = DateTime.UtcNow;
         t.invitees = t.invitees ?? new List<Invitee>();
-    if (dto.sections_order != null && dto.sections_order.Count == 3)
+
+        if (dto.sections_order != null && dto.sections_order.Count == 3)
             t.sections_order = dto.sections_order;
 
         var created = await _svc.CreateAsync(t, ct);
@@ -82,11 +87,11 @@ public class TemplatesController : ControllerBase
     }
 
     [HttpPut("{id:length(24)}")]
+    [Authorize]
     public async Task<IActionResult> Replace(string id, [FromBody] Template input, CancellationToken ct)
     {
-        
         input.last_updated = DateTime.UtcNow;
-    var ok = await _svc.ReplaceAsync(id, input, ct);
+        var ok = await _svc.ReplaceAsync(id, input, ct);
         return ok ? NoContent() : NotFound();
     }
 
@@ -94,6 +99,7 @@ public class TemplatesController : ControllerBase
     public class SaveOrderDto { public List<string> sections_order { get; set; } = new(); public int? current_step { get; set; } }
 
     [HttpPut("{id:length(24)}/personal")]
+    [Authorize]
     public async Task<IActionResult> PutPersonal(string id, [FromBody] PersonalInfo personal, [FromQuery] int? currentStep, CancellationToken ct = default)
     {
         // enforce mandatory fields remain true (server guard)
@@ -108,6 +114,7 @@ public class TemplatesController : ControllerBase
     }
 
     [HttpPut("{id:length(24)}/docs")]
+    [Authorize]
     public async Task<IActionResult> PutDocs(string id, [FromBody] DocVerification docs, [FromQuery] int? currentStep, CancellationToken ct = default)
     {
         var updates = Builders<Template>.Update.Set(x => x.Doc_verification, docs);
@@ -117,6 +124,7 @@ public class TemplatesController : ControllerBase
     }
 
     [HttpPut("{id:length(24)}/biometric")]
+    [Authorize]
     public async Task<IActionResult> PutBiometric(string id, [FromBody] BiometricVerification bio, [FromQuery] int? currentStep, CancellationToken ct = default)
     {
         var updates = Builders<Template>.Update.Set(x => x.Biometric_verification, bio);
@@ -126,6 +134,7 @@ public class TemplatesController : ControllerBase
     }
 
     [HttpPut("{id:length(24)}/order")]
+    [Authorize]
     public async Task<IActionResult> PutOrder(string id, [FromBody] SaveOrderDto body, CancellationToken ct = default)
     {
         if (body.sections_order == null || body.sections_order.Count != 3)
@@ -137,6 +146,7 @@ public class TemplatesController : ControllerBase
     }
 
     [HttpPatch("{id:length(24)}")]
+    [Authorize]
     public async Task<IActionResult> Patch(string id, [FromBody] Dictionary<string, object> patch, CancellationToken ct)
     {
         if (patch is null || patch.Count == 0) return BadRequest("Empty patch.");
@@ -145,6 +155,7 @@ public class TemplatesController : ControllerBase
     }
 
     [HttpDelete("{id:length(24)}")]
+    [Authorize]
     public async Task<IActionResult> Delete(string id, CancellationToken ct)
     {
         var ok = await _svc.DeleteAsync(id, ct);
@@ -174,5 +185,4 @@ public class TemplatesController : ControllerBase
         }
         return "Unknown";
     }
-
 }
