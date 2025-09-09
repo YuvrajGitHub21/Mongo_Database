@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("IDV_Templates_Mongo_API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+14ef261edb306a12d6d163b7833a07a884a513be")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+54cd9a010339e9cf8fed255566c5027849a33e0a")]
 [assembly: System.Reflection.AssemblyProductAttribute("IDV_Templates_Mongo_API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("IDV_Templates_Mongo_API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
